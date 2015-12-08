@@ -43,16 +43,22 @@ cuboids :: Shape -> Int
 cuboids = foldShape alg
  where
   alg = ShapeAlg empty cuboid shift stack union
-  empty        = undefined
-  cuboid w d h = undefined
-  shift x y ps = undefined
-  stack ps     = undefined
-  union ps     = undefined
+  empty        = 0
+  cuboid w d h = 1
+  shift x y ps = ps
+  stack ps     = sum ps
+  union ps     = sum ps
 
 -- TODO #2.2
 height :: Shape -> Double
-height = undefined
-
+height = foldShape alg
+  where
+    alg = ShapeAlg empty cuboid shift stack union
+    empty        = 0
+    cuboid w d h = h
+    shift x y ps = ps
+    stack ps     = sum ps
+    union ps     = maximum ps
 
 -- TODO #3.1
 instance Functor Bush where
