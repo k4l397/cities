@@ -62,7 +62,9 @@ height = foldShape alg
 
 -- TODO #3.1
 instance Functor Bush where
-  fmap = undefined
+  -- fmap :: (a -> b) -> Bush a -> Bush b
+  fmap f (Leaf x) = Leaf (f x)
+  fmap f (Fork xs) = Fork (map (fmap f) xs)
 
 city :: City
 city = fmap build land
